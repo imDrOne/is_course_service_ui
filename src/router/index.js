@@ -7,15 +7,23 @@ import AuthLayout from "@/layouts/AuthLayout/index";
 
 //Views
 import MainView from "@/views/MainView/index";
+import AuthView from "@/views/LoginView/index";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    // redirect: "/auth/login",
+    redirect: "/login",
     component: AuthLayout,
-    name: "Auth"
+    name: "Auth",
+    children: [
+      {
+        path: "login",
+        component: AuthView,
+        name: "Auth"
+      }
+    ]
   },
   {
     path: "/",
