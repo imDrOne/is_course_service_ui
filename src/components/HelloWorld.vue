@@ -103,10 +103,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  mounted() {
+    axios
+      .post(
+        "https://uis-411-is-course.herokuapp.com/v1/api/uis-dashboard-service/auth-controller/login",
+        {
+          login: "admin@mail.ru",
+          password: "967DrOne207"
+        }
+      )
+      .then(response => {
+        axios.defaults.headers.common["token"] = response.data.accessToken;
+        axios
+          .get(
+            "https://uis-411-is-course.herokuapp.com/v1/api/uis-dashboard-service/users-controller/users"
+          )
+          .then(console.log);
+      })
+      .catch(console.error);
   }
 };
 </script>
