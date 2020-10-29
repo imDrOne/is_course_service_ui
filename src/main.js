@@ -3,6 +3,7 @@ import App from "./App/App.vue";
 import router from "./router";
 import store from "./store";
 import "./quasar";
+import "./styles/index.scss";
 
 Vue.config.productionTip = false;
 

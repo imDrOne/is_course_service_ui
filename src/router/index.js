@@ -13,6 +13,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    // redirect: "/auth/login",
+    component: AuthLayout,
+    name: "Auth"
+  },
+  {
+    path: "/",
     redirect: "/main",
     component: MainLayout,
     name: "Dashboard",
@@ -23,12 +29,6 @@ const routes = [
         name: "Main"
       }
     ]
-  },
-  {
-    path: "/",
-    redirect: "/auth/login",
-    component: AuthLayout,
-    name: "Auth"
   }
 ];
 
