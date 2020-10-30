@@ -9,7 +9,9 @@ export default {
   methods: {
     async signOut() {
       try {
-        await apiAuth.signOut();
+        await apiAuth.signOut({
+          token: localStorage.getItem("accessToken")
+        });
         await this.$router.replace("/");
       } catch (e) {
         EventBus.$emit("error", e);
