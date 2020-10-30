@@ -26,7 +26,11 @@ const routes = [
         component: AuthView,
         name: "Login",
         beforeEnter: (to, from, next) => {
-          isAuthenticated() ? next({ name: "Dashboard" }) : next();
+          if (from.path !== "/") {
+            isAuthenticated()
+              .then(() => next({ name: "Dashboard" }))
+              .catch(() => next());
+          } else next();
         }
       }
     ]
@@ -50,11 +54,6 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.name !== "Login" && !isAuthenticated()) next({ name: "Login" });
-  else next();
 });
 
 export default router;

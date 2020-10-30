@@ -6,9 +6,18 @@ import "./quasar";
 import "./styles/index.scss";
 
 Vue.config.productionTip = false;
+import { isAuthenticated } from "@/utils/validations";
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
+(async () => {
+  try {
+    await isAuthenticated();
+  } catch (e) {
+    await router.replace({ path: "/login" });
+  } finally {
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+})();

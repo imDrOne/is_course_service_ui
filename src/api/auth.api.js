@@ -14,9 +14,10 @@ const apiAuth = axios.create({
 });
 
 const signIn = (data, config) => apiAuth.post("/login", data, config);
-const signOut = () => apiAuth.put("/logout");
-const checkToken = () => apiAuth.get("/check-token");
-const refreshToken = () => apiAuth.put("/refresh-token");
+const signOut = (data, config) => apiAuth.put("/logout", data, config);
+const checkToken = (data, config) => apiAuth.get("/check-token", config);
+const refreshToken = (data, config) =>
+  apiAuth.put("/refresh-token", data, config);
 
 const resolveMiddleware = res => {
   const { config, data } = res;
@@ -31,6 +32,10 @@ const resolveMiddleware = res => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     delete apiAuth.defaults.headers.common["token"];
+  }
+
+  if (config.url === "/refresh-token") {
+    localStorage.setItem("accessToken", data.accessToken);
   }
   return res;
 };
