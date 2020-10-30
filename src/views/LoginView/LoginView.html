@@ -1,11 +1,14 @@
 <q-page padding>
-  <q-card :class="responsiveClasses" class="absolute-center shadow-7">
+  <q-card
+    :class="responsiveClasses"
+    class="absolute-center shadow-7"
+  >
     <q-card-section class="q-mt-lg q-mx-md">
       <div class="text-h5 text-deep-purple-9">
-          Войдите в свою учетну запись
+          Войдите в свою учетную запись
       </div>
     </q-card-section>
-    <q-form>
+    <q-form @submit.prevent="onSubmit">
         <q-card-section>
             <div class="col q-col-gutter-md">
               <q-input

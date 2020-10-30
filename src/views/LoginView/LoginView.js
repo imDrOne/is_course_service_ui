@@ -1,3 +1,6 @@
+import apiAuth from "@/api/auth.api";
+import EventBus from "@/EventBus";
+
 export default {
   name: "LoginView",
   data: () => ({
@@ -16,6 +19,16 @@ export default {
   methods: {
     validateNullify(value, message) {
       return !!value || message;
+    },
+    async onSubmit() {
+      try {
+        await apiAuth.signIn({
+          login: this.login,
+          password: this.password
+        });
+      } catch (e) {
+        EventBus.$emit("error", e);
+      }
     }
   }
 };
