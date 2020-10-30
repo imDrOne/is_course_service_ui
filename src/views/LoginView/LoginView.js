@@ -26,6 +26,9 @@ export default {
           login: this.login,
           password: this.password
         });
+        await this.$router.replace({
+          name: "Dashboard"
+        });
       } catch (e) {
         EventBus.$emit("error", e);
       }
