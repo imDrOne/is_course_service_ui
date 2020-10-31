@@ -1,0 +1,45 @@
+<q-page padding>
+  <q-card
+    :class="responsiveClasses"
+    class="absolute-center shadow-7"
+  >
+    <q-card-section class="q-mt-lg q-mx-md">
+      <div class="text-h5 text-deep-purple-9">
+          Войдите в свою учетную запись
+      </div>
+    </q-card-section>
+    <q-form @submit.prevent="onSubmit">
+        <q-card-section>
+            <div class="col q-col-gutter-md">
+              <q-input
+                v-model="login"
+                outlined
+                label="Почтовый адрес"
+                :rules="[val => validateNullify(val, 'Логин не введен')]"
+                color="secondary"
+              >
+                  <q-icon slot="prepend" name="mdi-account"></q-icon>
+              </q-input>
+              <q-input
+                v-model="password"
+                type="password"
+                outlined
+                label="Пароль"
+                :rules="[val => validateNullify(val, 'Пароль не введен')]"
+                color="secondary"
+              >
+                  <q-icon slot="prepend" name="mdi-lock"></q-icon>
+              </q-input>
+            </div>
+        </q-card-section>
+        <q-card-actions class="q-px-md q-pt-none" align="center">
+            <q-btn
+                type="submit"
+                color="d-fade-btn-purple"
+                class="full-width"
+                label="Войти"
+            />
+        </q-card-actions>
+    </q-form>
+  </q-card>
+</q-page>
