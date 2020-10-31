@@ -16,6 +16,7 @@ export const isAuthenticated = async () => {
           "refresh-token": localStorage.getItem("refreshToken")
         }
       })
+      .then(() => Promise.resolve())
       .catch(message => Promise.reject(message));
   }
 };

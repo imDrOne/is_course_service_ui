@@ -4,13 +4,18 @@ import router from "./router";
 import store from "./store";
 import "./quasar";
 import "./styles/index.scss";
+import "./components";
 
 Vue.config.productionTip = false;
 import { isAuthenticated } from "@/utils/validations";
+import apiAuth from "@/api/auth.api";
 
 (async () => {
   try {
     await isAuthenticated();
+    apiAuth.defaults.headers.common["token"] = localStorage.getItem(
+      "accessToken"
+    );
   } catch (e) {
     await router.replace({ path: "/login" });
   } finally {

@@ -26,11 +26,9 @@ const routes = [
         component: AuthView,
         name: "Login",
         beforeEnter: (to, from, next) => {
-          if (from.path !== "/") {
-            isAuthenticated()
-              .then(() => next({ name: "Dashboard" }))
-              .catch(() => next());
-          } else next();
+          isAuthenticated()
+            .then(() => next({ name: "Dashboard" }))
+            .catch(() => next());
         }
       }
     ]
