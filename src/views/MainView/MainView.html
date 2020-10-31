@@ -1,3 +1,49 @@
-<q-page>
-  <q-card>mainPage</q-card>
+<q-page padding>
+    <div class="row justify-center q-gutter-md">
+        <div class="col">
+            <q-card flat style="max-width: 80%" class="q-ml-auto">
+                <q-toolbar class="bg-d-subtoolbars">
+                    <q-toolbar-title class="text-subtitle1">
+                        Пользователи системы
+                    </q-toolbar-title>
+                </q-toolbar>
+                <q-card-section class="q-pt-none">
+                    <q-list separator padding>
+                        <q-item clickable v-for="i in 20" :key="i">
+                            <q-item-section avatar>
+                                <q-icon name="mdi-account" />
+                            </q-item-section>
+                            <q-item-section>
+                                <q-item-label>Full name: Andrey Tikholoz</q-item-label>
+                                <q-item-label caption lines="2">
+                                    email: abre@mail.ru
+                                </q-item-label>
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                </q-card-section>
+            </q-card>
+        </div>
+        <div class="col">
+            <q-card flat style="max-width: 80%" class="q-mr-auto">
+                <q-toolbar class="bg-d-subtoolbars">
+                    <q-toolbar-title class="text-subtitle1">
+                        Редактор пользователя
+                    </q-toolbar-title>
+                </q-toolbar>
+                <q-card-section>
+                    <div class="row">
+                        <div class="col-8">
+                            <q-form style="width: 400px" class="q-gutter-md">
+                                <q-input color="secondary" label="Фамилия" dense outlined/>
+                                <q-input color="secondary" label="Имя" dense outlined/>
+                                <q-input color="secondary" label="Email" dense outlined/>
+                                <q-input color="secondary" label="Права" dense outlined/>
+                            </q-form>
+                        </div>
+                    </div>
+                </q-card-section>
+            </q-card>
+        </div>
+    </div>
 </q-page>
