@@ -1,0 +1,40 @@
+<q-menu max-width="250px">
+    <q-card class="d-menu-card">
+        <q-card-section>
+            <div class="column">
+                <div class="col self-center">
+                    <q-avatar>
+                        <img
+                            src="@/assets/ninja-avatar-48x48.png"
+                            alt="avatar"
+                        >
+                    </q-avatar>
+                </div>
+                <div class="col self-center">
+                    <div>Tikholoz Andrey</div>
+                </div>
+            </div>
+        </q-card-section>
+        <q-card-section class="q-pa-none">
+            <q-list
+                dense
+                separator
+            >
+                <q-item
+                    v-for="item in menuItems"
+                    :key="item.label"
+                    clickable
+                    @click="item.action(item.data)"
+                >
+                    <q-item-section avatar>
+                        <q-icon
+                            color="accent"
+                            :name="item.icon"
+                        />
+                    </q-item-section>
+                    <q-item-section>{{ item.label }}</q-item-section>
+                </q-item>
+            </q-list>
+        </q-card-section>
+    </q-card>
+</q-menu>

@@ -19,18 +19,27 @@ const checkToken = (data, config) => apiAuth.get("/check-token", config);
 const refreshToken = (data, config) =>
   apiAuth.put("/refresh-token", data, config);
 
+const permissions = () => JSON.parse(localStorage.getItem("permissions"));
+
 const resolveMiddleware = res => {
   const { config, data } = res;
 
   if (config.url === "/login") {
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
+    localStorage.setItem("permissions", JSON.stringify(data.permissions));
+    localStorage.setItem("requisites", JSON.stringify(data.requisites));
     apiAuth.defaults.headers.common["token"] = data.accessToken;
+    apiAuth.defaults.headers.common["permissions"] = permissions().map(
+      perm => perm.code
+    );
   }
 
   if (config.url === "/logout") {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("permissions");
+    localStorage.removeItem("requisites");
     delete apiAuth.defaults.headers.common["token"];
   }
 
