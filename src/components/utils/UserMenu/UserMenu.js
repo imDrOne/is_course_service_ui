@@ -2,8 +2,10 @@ import { mapActions, mapGetters } from "vuex";
 
 import apiAuth from "@/api/auth.api";
 import EventBus from "@/EventBus";
+import {redirector} from "@/components/mixins/redirector";
 
 export default {
+  mixins: [redirector],
   data: vm => ({
     menuItems: [
       {
@@ -53,9 +55,6 @@ export default {
       } catch (e) {
         EventBus.$emit("error", e);
       }
-    },
-    async redirectionTo(pathName = "test") {
-      await this.$router.replace({ path: pathName });
     }
   }
 };
