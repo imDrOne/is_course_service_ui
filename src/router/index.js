@@ -11,6 +11,7 @@ import AuthLayout from "@/layouts/AuthLayout/index";
 //Views
 import MainView from "@/views/MainView/index";
 import AuthView from "@/views/LoginView/index";
+import NewUserView from "@/views/NewUserView/index";
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,11 @@ const routes = [
         path: "main",
         component: MainView,
         name: "Main"
+      },
+      {
+        path: "new_user",
+        component: NewUserView,
+        name: "NewUser"
       }
     ]
   }

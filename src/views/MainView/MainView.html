@@ -1,28 +1,17 @@
 <q-page padding>
-    <div class="row justify-center q-gutter-md">
-        <div class="col-sm-8 col-xs">
-            <q-card>
-                <q-toolbar class="bg-d-subtoolbars">
-                    <q-toolbar-title class="text-subtitle1">
-                        Пользователи системы
-                    </q-toolbar-title>
-                </q-toolbar>
-                <q-card-section class="q-pt-none">
-                    <q-list separator padding>
-                        <q-item clickable v-for="i in 20" :key="i">
-                            <q-item-section avatar>
-                                <q-icon name="mdi-account" />
-                            </q-item-section>
-                            <q-item-section>
-                                <q-item-label>Full name: Andrey Tikholoz</q-item-label>
-                                <q-item-label caption lines="2">
-                                    email: abre@mail.ru
-                                </q-item-label>
-                            </q-item-section>
-                        </q-item>
-                    </q-list>
-                </q-card-section>
-            </q-card>
+    <div class="row q-gutter-md">
+        <div class="col-md-4 col-xs-12">
+            <d-users-list
+                :users="users"
+                v-if="checkPermission('can__ViewUsers')"
+            />
+        </div>
+        <div class="col">
+            <d-users-list
+                class="full-height"
+                :users="users"
+                v-if="checkPermission('can__ViewUsers')"
+            />
         </div>
 <!--        <div class="col">-->
 <!--            <q-card>-->

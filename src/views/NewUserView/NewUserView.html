@@ -1,0 +1,74 @@
+<q-page padding>
+  <q-card class="full-height">
+    <q-toolbar class="bg-d-subtoolbars">
+      <q-toolbar-title class="text-h6 text-grey-8">
+        Создание нового пользователя
+      </q-toolbar-title>
+    </q-toolbar>
+    <q-form @submit.prevent="onSubmit" ref="form">
+      <q-card-section class="row">
+        <div class="col-xs col-md-4 q-gutter-sm">
+            <q-input
+                v-model="firstName"
+                color="accent"
+                outlined
+                label="Имя"
+                lazy-rules
+                :rules="[val => validateNullify(val, 'Имя не введено')]"
+            />
+            <q-input
+                v-model="lastName"
+                color="accent"
+                outlined
+                label="Фамилия"
+                lazy-rules
+                :rules="[val => validateNullify(val, 'Фамилия не введенна')]"
+            />
+            <q-input
+                    v-model="login"
+                    color="accent"
+                    outlined
+                    label="Почтовый адрес*"
+                    lazy-rules
+                    :rules="[emailFormatValidation]"
+            />
+            <q-input
+                    v-model="password"
+                    color="accent"
+                    outlined
+                    label="Пароль"
+                    lazy-rules
+                    :rules="[sourcePasswordValidate]"
+                    type="password"
+            />
+            <q-input
+                    v-model="confirmPassword"
+                    color="accent"
+                    outlined
+                    label="Подвердите пароль"
+                    lazy-rules
+                    :rules="[confirmationPasswordValidate]"
+                    type="password"
+            />
+            <q-select
+                v-model="permissions"
+                multiple
+                use-chips
+                :options="permissionDTO"
+                option-label="permissionName"
+                option-value="permissionCode"
+                color="accent"
+                options-dense
+                label-color="bg-black"
+                outlined
+                label="Права доступа"
+            />
+        </div>
+      </q-card-section>
+      <q-card-actions class="row justify-end">
+          <q-btn type="submit" label="Отмена"/>
+          <q-btn type="submit" label="Сохранить"/>
+      </q-card-actions>
+    </q-form>
+  </q-card>
+</q-page>

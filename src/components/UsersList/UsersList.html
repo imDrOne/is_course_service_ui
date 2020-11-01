@@ -1,0 +1,22 @@
+<q-card>
+    <q-toolbar class="bg-d-subtoolbars">
+        <q-toolbar-title class="text-subtitle1">
+            Пользователи системы
+        </q-toolbar-title>
+    </q-toolbar>
+    <q-card-section class="q-pt-none">
+        <q-list separator padding>
+            <q-item clickable v-for="(user, i) in users" :key="i">
+                <q-item-section avatar>
+                    <q-icon name="mdi-account" />
+                </q-item-section>
+                <q-item-section>
+                    <q-item-label>Пользователь: {{ user.firstName }} {{ user.secondName }}</q-item-label>
+                    <q-item-label caption lines="2">
+                        email: {{ user.email }}
+                    </q-item-label>
+                </q-item-section>
+            </q-item>
+        </q-list>
+    </q-card-section>
+</q-card>
