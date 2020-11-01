@@ -9,11 +9,15 @@ import "./components";
 Vue.config.productionTip = false;
 import { isAuthenticated } from "@/utils/validations";
 import apiAuth from "@/api/auth.api";
+import apiUsers from "@/api/users.api";
 
 (async () => {
   try {
     await isAuthenticated();
     apiAuth.defaults.headers.common["token"] = localStorage.getItem(
+      "accessToken"
+    );
+    apiUsers.defaults.headers.common["token"] = localStorage.getItem(
       "accessToken"
     );
   } catch (e) {

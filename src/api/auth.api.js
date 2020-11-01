@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import apiUsers from "@/api/users.api";
+
 const rootApiURL =
   process.env.VUE_APP_ROOT_API_URL ||
   "https://uis-411-is-course.herokuapp.com/v1/api/uis-dashboard-service";
@@ -30,6 +32,7 @@ const resolveMiddleware = res => {
     localStorage.setItem("permissions", JSON.stringify(data.permissions));
     localStorage.setItem("requisites", JSON.stringify(data.requisites));
     apiAuth.defaults.headers.common["token"] = data.accessToken;
+    apiUsers.defaults.headers.common["token"] = data.accessToken;
     apiAuth.defaults.headers.common["permissions"] = permissions().map(
       perm => perm.code
     );

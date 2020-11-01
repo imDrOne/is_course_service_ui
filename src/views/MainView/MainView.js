@@ -1,3 +1,10 @@
+import { mapGetters } from "vuex";
+
 export default {
-  name: "MainView"
+  name: "MainView",
+  computed: {
+    ...mapGetters({
+      users: "users/GET_USERS"
+    })
+  }
 };
