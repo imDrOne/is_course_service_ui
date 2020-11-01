@@ -21,6 +21,7 @@ import apiUsers from "@/api/users.api";
       "accessToken"
     );
   } catch (e) {
+    localStorage.clear();
     await router.replace({ path: "/login" });
   } finally {
     new Vue({

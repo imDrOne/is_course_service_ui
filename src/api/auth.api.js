@@ -39,15 +39,14 @@ const resolveMiddleware = res => {
   }
 
   if (config.url === "/logout") {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("permissions");
-    localStorage.removeItem("requisites");
+    localStorage.clear();
     delete apiAuth.defaults.headers.common["token"];
   }
 
   if (config.url === "/refresh-token") {
     localStorage.setItem("accessToken", data.accessToken);
+    apiAuth.defaults.headers.common["token"] = data.accessToken;
+    apiUsers.defaults.headers.common["token"] = data.accessToken;
   }
   return res;
 };
