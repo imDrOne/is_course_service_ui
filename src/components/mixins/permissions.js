@@ -14,9 +14,11 @@ export const permissions = {
   methods: {
     checkPermission(code) {
       if (!this.permissionsCodes) return false;
-      const res = this.permissionsCodes.includes(code);
-      console.log(res);
       return this.permissionsCodes.includes(code);
+    },
+    permissionByCode(code) {
+      if (!this.permissionsCodes) return undefined;
+      return this.permissionsCodes.find(permission => permission === code);
     }
   }
 };

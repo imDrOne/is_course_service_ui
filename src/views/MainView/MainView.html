@@ -1,7 +1,18 @@
 <q-page padding>
-    <div class="row justify-center q-gutter-md">
-        <div class="col-sm-8 col-xs">
-            <d-users-list :users="users" v-if="checkPermission('can__ViewUsers')"/>
+    <div class="row q-gutter-md">
+        <div class="col-md-4 col-xs-12">
+            <d-users-list
+                class="full-height"
+                :users="users"
+                v-if="checkPermission('can__ViewUsers')"
+            />
+        </div>
+        <div class="col">
+            <d-users-list
+                class="full-height"
+                :users="users"
+                v-if="checkPermission('can__ViewUsers')"
+            />
         </div>
 <!--        <div class="col">-->
 <!--            <q-card>-->

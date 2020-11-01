@@ -1,0 +1,18 @@
+<q-menu>
+  <q-list
+      v-if="permissionByCode('can__CreateUsers')"
+      style="width: 250px"
+  >
+    <q-item clickable>
+      <q-item-section avatar>
+        <q-icon color="accent" name="mdi-account-multiple-plus" />
+      </q-item-section>
+      <q-item-section>Создать пользователя</q-item-section>
+    </q-item>
+  </q-list>
+  <div v-else style="width: 250px">
+    <div class="q-pa-sm text-grey-6">
+        Нет доступых действий
+    </div>
+  </div>
+</q-menu>

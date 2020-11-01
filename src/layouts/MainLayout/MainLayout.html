@@ -3,10 +3,16 @@
     <q-toolbar class="bg-white d-toolbar-border-bt text-accent">
       <q-toolbar-title class="text-h6">DASHBOARD UIS</q-toolbar-title>
 
-      <q-btn outlin round>
-        <q-icon color="secondary" size="md" name="mdi-account" />
-        <d-menu />
-      </q-btn>
+      <div class="q-gutter-sm">
+        <q-btn flat round size="sm">
+          <q-icon color="secondary" size="sm" name="mdi-view-dashboard" />
+          <d-actions-menu />
+        </q-btn>
+        <q-btn flat round size="sm">
+          <q-icon color="secondary" size="sm" name="mdi-account" />
+          <d-user-menu />
+        </q-btn>
+      </div>
     </q-toolbar>
   </q-header>
 
