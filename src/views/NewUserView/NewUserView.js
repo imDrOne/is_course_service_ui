@@ -22,9 +22,7 @@ export default {
     try {
       await this.loadPermissions();
     } catch (e) {
-      if (e === "try") {
-        this.loadPermissions().catch(err => EventBus.$emit("error", err));
-      } else EventBus.$emit("error", e);
+      EventBus.$emit("error", e);
     }
   },
   methods: {
@@ -47,9 +45,7 @@ export default {
         await this.validateForm();
         await this.createUser();
       } catch (e) {
-        if (e === "try") {
-          this.createUser().catch(err => EventBus.$emit("error", err));
-        } else EventBus.$emit("error", e);
+        EventBus.$emit("error", e);
       }
     },
     goBack() {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import apiAuth from "@/api/auth.api";
+import router from "@/router";
 
 const rootApiURL =
   process.env.VUE_APP_ROOT_API_URL ||
@@ -22,17 +23,20 @@ const getAllPermissions = () =>
 const createUser = data => apiUsers.post("/users-controller/newUser", data);
 
 const rejectMiddleware = async err => {
-  const { response } = err;
-  if (response.status === 403) {
+  const { response, config: originalRequest } = err;
+  if (response.status === 403 && !originalRequest._retry) {
+    originalRequest._retry = true;
     try {
-      await apiAuth.refreshToken(null, {
+      const { data } = await apiAuth.refreshToken(null, {
         headers: {
           "access-token": localStorage.getItem("accessToken"),
           "refresh-token": localStorage.getItem("refreshToken")
         }
       });
-      return Promise.reject("try");
+      originalRequest.headers.token = data.accessToken;
+      return axios(originalRequest);
     } catch (e) {
+      await router.replace({ name: "Login" });
       return Promise.reject(response.data.message);
     }
   }
@@ -41,6 +45,17 @@ const rejectMiddleware = async err => {
 };
 
 apiUsers.interceptors.response.use(null, rejectMiddleware);
+apiUsers.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      console.log(1);
+      config.headers["token"] = token;
+    }
+    return config;
+  },
+  error => Promise.reject(error)
+);
 
 apiUsers.getAllUsers = getAllUsers;
 apiUsers.getAllPermissions = getAllPermissions;

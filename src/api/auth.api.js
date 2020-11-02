@@ -41,6 +41,7 @@ const resolveMiddleware = res => {
   if (config.url === "/logout") {
     localStorage.clear();
     delete apiAuth.defaults.headers.common["token"];
+    delete apiUsers.defaults.headers.common["token"];
   }
 
   if (config.url === "/refresh-token") {
