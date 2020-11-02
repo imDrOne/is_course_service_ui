@@ -6,33 +6,5 @@
                 v-if="checkPermission('can__ViewUsers')"
             />
         </div>
-        <div class="col">
-            <d-users-list
-                class="full-height"
-                :users="users"
-                v-if="checkPermission('can__ViewUsers')"
-            />
-        </div>
-<!--        <div class="col">-->
-<!--            <q-card>-->
-<!--                <q-toolbar class="bg-d-subtoolbars">-->
-<!--                    <q-toolbar-title class="text-subtitle1">-->
-<!--                        Редактор пользователя-->
-<!--                    </q-toolbar-title>-->
-<!--                </q-toolbar>-->
-<!--                <q-card-section>-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-8">-->
-<!--                            <q-form style="width: 400px" class="q-gutter-md">-->
-<!--                                <q-input color="secondary" label="Фамилия" dense outlined/>-->
-<!--                                <q-input color="secondary" label="Имя" dense outlined/>-->
-<!--                                <q-input color="secondary" label="Email" dense outlined/>-->
-<!--                                <q-input color="secondary" label="Права" dense outlined/>-->
-<!--                            </q-form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </q-card-section>-->
-<!--            </q-card>-->
-<!--        </div>-->
     </div>
 </q-page>

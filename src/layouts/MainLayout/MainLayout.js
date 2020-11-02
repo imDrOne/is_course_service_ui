@@ -14,16 +14,15 @@ export default {
   async mounted() {
     if (this.permissionsCodes) {
       if (this.permissionsCodes.includes("can__ViewUsers")) {
-        await this.fetchUsers();
-      }
-    }
-  },
-  methods: {
-    async fetchUsers() {
-      try {
-        await this.$store.dispatch("users/LOAD_USERS", {});
-      } catch (message) {
-        EventBus.$emit("error", message);
+        try {
+          await this.$store.dispatch("users/LOAD_USERS", {});
+        } catch (e) {
+          if (e === "try") {
+            await this.$store
+              .dispatch("users/LOAD_USERS", {})
+              .catch(err => EventBus.$emit("error", err));
+          } else EventBus.$emit("error", e);
+        }
       }
     }
   }
