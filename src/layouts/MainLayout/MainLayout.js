@@ -17,11 +17,7 @@ export default {
         try {
           await this.$store.dispatch("users/LOAD_USERS", {});
         } catch (e) {
-          if (e === "try") {
-            await this.$store
-              .dispatch("users/LOAD_USERS", {})
-              .catch(err => EventBus.$emit("error", err));
-          } else EventBus.$emit("error", e);
+          EventBus.$emit("error", e);
         }
       }
     }
